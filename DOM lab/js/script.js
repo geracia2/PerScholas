@@ -61,12 +61,22 @@ topMenuEl.classList.add('flex-around');
 // 3.0 
 // Menu data structure
 var menuLinks = [
-    {text: 'about', href: '/about'},        //menuLinks[0].text, menuLinks[0].href
-    {text: 'catalog', href: '/catalog'},
-    {text: 'orders', href: '/orders'},
-    {text: 'account', href: '/account'},
+    {text: 'about', href: '/about'},
+    {text: 'catalog', href: '#', subLinks: [
+      {text: 'all', href: '/catalog/all'},
+      {text: 'top selling', href: '/catalog/top'},
+      {text: 'search', href: '/catalog/search'},
+    ]},
+    {text: 'orders', href: '#' , subLinks: [
+      {text: 'new', href: '/orders/new'},
+      {text: 'pending', href: '/orders/pending'},
+      {text: 'history', href: '/orders/history'},
+    ]},
+    {text: 'account', href: '#', subLinks: [
+      {text: 'profile', href: '/account/profile'},
+      {text: 'sign out', href: '/account/signout'},
+    ]},
   ];
-
 
 // 3.1 Iterate over the entire menuLinks array and for each "link" object:
 // ---- Create an <a> element.
@@ -76,17 +86,17 @@ var menuLinks = [
 
 // for (let value of menuLinks){
 //     let newLink = document.createElement('a');
-//     newLink.setAttribute('herf', value.href); 
+//     newLink.setAttribute('href', value.href); 
 //     newLink.textContent = value.text;
 //     topMenuEl.appendChild(newLink);
 // };
 
-for (let key in menuLinks){
-    let newLink = document.createElement('a');
-    newLink.setAttribute('herf', menuLinks[key].href); 
-    newLink.textContent = menuLinks[key].text;
-    topMenuEl.appendChild(newLink);
-};
+// for (let key in menuLinks){
+//     let newLink = document.createElement('a');
+//     newLink.setAttribute('href', menuLinks[key].href); 
+//     newLink.textContent = menuLinks[key].text;
+//     topMenuEl.appendChild(newLink);
+// };
 
 // for (let i = 0; i <= menuLinks.length; i++) {
 //     let newLink = document.createElement('a');
@@ -95,9 +105,45 @@ for (let key in menuLinks){
 //     topMenuEl.appendChild(newLink);
 // }
 
-// menuLinks.forEach(function(element, index, array) {
-//     let newLink = document.createElement('a');
-//     newLink.setAttribute("href", array[index].href);
-//     newLink.textContent = array[index].text;
-//     topMenuEl.appendChild(newLink);
-// });
+menuLinks.forEach(function(element, index, array) {
+    let newLink = document.createElement('a');
+    newLink.setAttribute("href", array[index].href);
+    newLink.textContent = array[index].text;
+    topMenuEl.appendChild(newLink);
+});
+
+
+// --------------- PART 2 ---------------------
+// --------------------------------------------
+
+// 4.0 
+let subMenuEl = document.querySelector("#sub-menu");
+// 4.1 
+subMenuEl.style.height = "100%";
+// 4.2 
+subMenuEl.style.backgroundColor = "var(--sub-menu-bg)";
+// 4.3 
+subMenuEl.classList.add("flex-around");
+// 4.4 
+subMenuEl.style.position = "absolute";
+// 4.5
+subMenuEl.style.top = "0";
+// 5.0
+// 5.1 Select and cache the all of the <a> elements inside of topMenuEl in a variable named topMenuLinks.
+// -- Declare a global showingSubMenu variable and initialize it to false;
+let topMenuLinks = topMenuEl.querySelectorAll("a#top-menu");
+console.log(topMenuLinks);
+let showingSubMenu = false;
+// 5.2 & 3
+// in top
+topMenuEl.addEventListener('click', function(evt) {
+    evt.preventDefault();
+    // console.log(evt.target.nodeName)
+    if (evt.target.nodeName !== 'A'){
+        return;
+    } else {
+        console.log(evt.target.innerHTML);
+    }
+})
+
+// 5.4 
