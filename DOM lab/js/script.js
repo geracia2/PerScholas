@@ -84,12 +84,12 @@ var menuLinks = [
 // ---- Set the new element's content to the value of the text property of the "link" object.
 // ---- Append the new element to the topMenuEl element.
 
-// for (let value of menuLinks){
-//     let newLink = document.createElement('a');
-//     newLink.setAttribute('href', value.href); 
-//     newLink.textContent = value.text;
-//     topMenuEl.appendChild(newLink);
-// };
+for (let value of menuLinks){
+    let newLink = document.createElement('a');
+    newLink.setAttribute('href', value.href); 
+    newLink.textContent = value.text;
+    topMenuEl.appendChild(newLink);
+};
 
 // for (let key in menuLinks){
 //     let newLink = document.createElement('a');
@@ -105,12 +105,12 @@ var menuLinks = [
 //     topMenuEl.appendChild(newLink);
 // }
 
-menuLinks.forEach(function(element, index, array) {
-    let newLink = document.createElement('a');
-    newLink.setAttribute("href", array[index].href);
-    newLink.textContent = array[index].text;
-    topMenuEl.appendChild(newLink);
-});
+// menuLinks.forEach(function(element, index, array) {
+//     let newLink = document.createElement('a');
+//     newLink.setAttribute("href", array[index].href);
+//     newLink.textContent = array[index].text;
+//     topMenuEl.appendChild(newLink);
+// });
 
 
 // --------------- PART 2 ---------------------
@@ -129,21 +129,83 @@ subMenuEl.style.position = "absolute";
 // 4.5
 subMenuEl.style.top = "0";
 // 5.0
+
 // 5.1 Select and cache the all of the <a> elements inside of topMenuEl in a variable named topMenuLinks.
 // -- Declare a global showingSubMenu variable and initialize it to false;
-let topMenuLinks = topMenuEl.querySelectorAll("a#top-menu");
-console.log(topMenuLinks);
+
+// ('#top-menu(parent) a(child)') = all anchors in top-menu
+let topMenuLinks = topMenuEl.querySelectorAll("a");
+// console.log(topMenuLinks);
+// lets check if this is hitting the links
+topMenuLinks.forEach(function(element, index, array) {
+  array[index].style.border = 'solid red 5px';
+});
 let showingSubMenu = false;
-// 5.2 & 3
-// in top
+
+// 5.2 
+// in topMenuEl listen for click, do a function
+// save the produced event object as evt
 topMenuEl.addEventListener('click', function(evt) {
-    evt.preventDefault();
-    // console.log(evt.target.nodeName)
+    evt.preventDefault(showingSubMenu);
+    // console.log(evt)
+    console.log(evt.target.classList)
     if (evt.target.nodeName !== 'A'){
         return;
     } else {
         console.log(evt.target.innerHTML);
     }
+    // 5.3 another if <a> link has a class of active
+    if (evt.target.classList.contains('active')) {
+
+    }
+    
+    
 })
 
-// 5.4 
+
+
+
+
+
+
+// 5.4 remove active class name from <a> or <evt> 
+// in topMenuLinks whether the activeclass exists or not. 
+
+
+/*
+let subMenuEl = document.getElementById("sub-menu");
+
+subMenuEl.style.height = "100%";
+subMenuEl.style.backgroundColor = "var(--sub-menu-bg)";
+subMenuEl.classList.add("flex-around");
+subMenuEl.style.position = "absolute";
+subMenuEl.style.top = "0";
+
+let topMenuLinks = document.querySelectorAll("#top-menu a");
+
+let showingSubMenu = false;
+
+topMenuEl.addEventListener("click", (evt) => {
+  evt.preventDefault();
+  // console.log(event.target.nodeName);
+  if (evt.target.nodeName !== "A") {
+    return;
+  } else {
+    console.log(evt.target.innerHTML);
+  }
+  if (evt.target.classList.contains("active")) {
+    evt.target.classList.remove("active");
+    showingSubMenu = false;
+    subMenuEl.style.top = "0";
+    console.log(evt);
+    return;
+  }
+  for (let value of topMenuLinks) {
+    value.classList.remove("active");
+  }
+  evt.target.classList.add("active");
+  // 5.6
+  if ((showingSubMenu = true)) {
+  }
+});
+*/
