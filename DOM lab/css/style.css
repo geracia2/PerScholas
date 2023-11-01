@@ -55,11 +55,11 @@ header, #top-menu {
   z-index: 10;
   transition: top 0.5s ease-out;
 }
-
+/* target submenu parent, child anchor with a pseudo hover class */
 #sub-menu a:hover {
   background-color: var(--top-menu-bg);
 }
-
+/* target nav parent, anchor child with a class of active */
 nav a.active {
   background-color: var(--sub-menu-bg);
   color: var(--main-bg);

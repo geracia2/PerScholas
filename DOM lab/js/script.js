@@ -62,8 +62,8 @@ topMenuEl.classList.add('flex-around');
 // Menu data structure
 var menuLinks = [
     {text: 'about', href: '/about'},
-    {text: 'catalog', href: '#', subLinks: [
-      {text: 'all', href: '/catalog/all'},
+    {text: 'catalog', href: '#', subLinks: [        //menuLinks[1].subLinks -array
+      {text: 'all', href: '/catalog/all'},          //menuLinks[1].subLinks[0].text -value
       {text: 'top selling', href: '/catalog/top'},
       {text: 'search', href: '/catalog/search'},
     ]},
@@ -85,31 +85,32 @@ var menuLinks = [
 // ---- Append the new element to the topMenuEl element.
 
 for (let value of menuLinks){
-    let newLink = document.createElement('a');
-    newLink.setAttribute('href', value.href); 
-    newLink.textContent = value.text;
-    topMenuEl.appendChild(newLink);
+    let link = document.createElement('a');
+    link.setAttribute('href', value.href); 
+    link.textContent = value.text;
+    topMenuEl.appendChild(link);
+    // console.log(link)
 };
 
 // for (let key in menuLinks){
-//     let newLink = document.createElement('a');
-//     newLink.setAttribute('href', menuLinks[key].href); 
-//     newLink.textContent = menuLinks[key].text;
-//     topMenuEl.appendChild(newLink);
+//     let link = document.createElement('a');
+//     link.setAttribute('href', menuLinks[key].href); 
+//     link.textContent = menuLinks[key].text;
+//     topMenuEl.appendChild(link);
 // };
 
 // for (let i = 0; i <= menuLinks.length; i++) {
-//     let newLink = document.createElement('a');
-//     newLink.setAttribute("href", menuLinks[i].href);
-//     newLink.textContent = menuLinks[i].text;
-//     topMenuEl.appendChild(newLink);
+//     let link = document.createElement('a');
+//     link.setAttribute("href", menuLinks[i].href);
+//     link.textContent = menuLinks[i].text;
+//     topMenuEl.appendChild(link);
 // }
 
 // menuLinks.forEach(function(element, index, array) {
-//     let newLink = document.createElement('a');
-//     newLink.setAttribute("href", array[index].href);
-//     newLink.textContent = array[index].text;
-//     topMenuEl.appendChild(newLink);
+//     let link = document.createElement('a');
+//     link.setAttribute("href", array[index].href);
+//     link.textContent = array[index].text;
+//     topMenuEl.appendChild(link);
 // });
 
 
@@ -117,7 +118,7 @@ for (let value of menuLinks){
 // --------------------------------------------
 
 // 4.0 
-let subMenuEl = document.querySelector("#sub-menu");
+let subMenuEl = document.querySelector("nav#sub-menu");
 // 4.1 
 subMenuEl.style.height = "100%";
 // 4.2 
@@ -136,76 +137,120 @@ subMenuEl.style.top = "0";
 // ('#top-menu(parent) a(child)') = all anchors in top-menu
 let topMenuLinks = topMenuEl.querySelectorAll("a");
 // console.log(topMenuLinks);
-// lets check if this is hitting the links
-topMenuLinks.forEach(function(element, index, array) {
-  array[index].style.border = 'solid red 5px';
-});
+// -- lets check if this is hitting the <a> links
+// topMenuLinks.forEach(function(element, index, array) {
+//   array[index].style.border = 'solid red 5px';
+// });
 let showingSubMenu = false;
 
 // 5.2 
-// in topMenuEl listen for click, do a function
-// save the produced event object as evt
 topMenuEl.addEventListener('click', function(evt) {
-    evt.preventDefault(showingSubMenu);
-    // console.log(evt)
-    console.log(evt.target.classList)
-    if (evt.target.nodeName !== 'A'){
-        return;
-    } else {
-        console.log(evt.target.innerHTML);
-    }
-    // 5.3 another if <a> link has a class of active
-    if (evt.target.classList.contains('active')) {
-
-    }
-    
-    
-})
-
-
-
-
-
-
-
-// 5.4 remove active class name from <a> or <evt> 
-// in topMenuLinks whether the activeclass exists or not. 
-
-
-/*
-let subMenuEl = document.getElementById("sub-menu");
-
-subMenuEl.style.height = "100%";
-subMenuEl.style.backgroundColor = "var(--sub-menu-bg)";
-subMenuEl.classList.add("flex-around");
-subMenuEl.style.position = "absolute";
-subMenuEl.style.top = "0";
-
-let topMenuLinks = document.querySelectorAll("#top-menu a");
-
-let showingSubMenu = false;
-
-topMenuEl.addEventListener("click", (evt) => {
   evt.preventDefault();
-  // console.log(event.target.nodeName);
-  if (evt.target.nodeName !== "A") {
-    return;
+  if (evt.target.nodeName !== 'A'){
+      return;
   } else {
-    console.log(evt.target.innerHTML);
+      console.log("event target element:")
+      console.log(evt.target.innerHTML);
   }
-  if (evt.target.classList.contains("active")) {
-    evt.target.classList.remove("active");
+  // 5.3 
+  if (evt.target.classList.contains('active')) {
+    evt.target.classList.remove('active');
     showingSubMenu = false;
-    subMenuEl.style.top = "0";
-    console.log(evt);
+    subMenuEl.style.top = '0';
     return;
   }
-  for (let value of topMenuLinks) {
-    value.classList.remove("active");
+
+  // 5.4 
+  topMenuLinks.forEach(function(element, index, array) {
+    array[index].classList.remove('active');
+  });
+
+  // 5.5 
+  evt.target.classList.add('active');
+
+  // 5.6 Set showingSubMenu to true if the clicked <a> element's 
+  // "link" object within menuLinks has a subLinks property (all do, 
+  //  except for the "link" object for ABOUT), otherwise, set it to false.
+
+  let subLinks = []; 
+  let linkElement = menuLinks.find(({text}) => text === evt.target.innerHTML)
+  console.log("link element:")
+  console.dir(linkElement)
+  for (const key in menuLinks) {
+    // hasOwnProperty kinda like saying "does this array have a property key named('')"
+    if (linkElement.hasOwnProperty('subLinks')) {
+        subLinks = linkElement.subLinks; //5.6 hint?
+        showingSubMenu = true;
+    } else {
+      // subLinks = linkElement;
+      showingSubMenu = false;
+    }
   }
-  evt.target.classList.add("active");
-  // 5.6
-  if ((showingSubMenu = true)) {
+  
+
+  // 5.7 If showingSubMenu is true:
+  if (showingSubMenu === true) {
+    buildSubMenu(subLinks);
+    subMenuEl.style.top = '100%';
+  } else if (showingSubMenu = false) {
+    subMenuEl.style.top = '0';
+  } 
+ 
+  
+  // 5.8  buildSubMenu function
+  function buildSubMenu(obj) {
+    // subMenuEl.remove() // this removes it completely, not clears it
+    subMenuEl.innerHTML = ''  // it does remove hard code elements
+    // subMenuEl.removeChild(subMenuEl.firstChild); // may be it unless we need to clear more than 1
+    for (let value of obj){//does this need to be a for each to work with about?
+      // console.dir(value)
+      let link = document.createElement('a');
+      link.setAttribute('href', value.href); 
+      link.textContent = value.text;
+      subMenuEl.appendChild(link);
+    }
+    // obj.forEach(function(element, index, obj) {
+    //     let link = document.createElement('a');
+    //     link.setAttribute('href', element.href);
+    //     link.textContent = element.text;
+    //     subMenuEl.appendChild(link);
+    // });
+  }
+  // 6.4 ????????
+  if (evt.target.innerHTML === 'about') {
+    const h1El = document.querySelector('h1');
+    h1El.textContent = 'about'
   }
 });
-*/
+
+// 6.0 Attach a delegated >'click' event listener to >subMenuEl.
+// The first line of code of the event listener function 
+// should call the event object's preventDefault() method.
+// The second line of code function should immediately return 
+// >if the element clicked was not an <a> element.
+// console.log the content of the <a> to verify the handler is working
+subMenuEl.addEventListener('click', function (evt) {
+  evt.preventDefault()
+  if (evt.target.nodeName !== 'A') {
+    return;
+  } else {
+    console.log("event target element:")
+    console.log(evt.target.innerHTML);
+  }
+  // 6.1
+  showingSubMenu = false;
+  subMenuEl.style.top = '0';
+
+  // 6.2 
+  evt.target.classList.remove('active')
+
+  // 6.3 
+  const h1El = document.querySelector('h1');
+  h1El.textContent = evt.target.innerHTML
+  console.log("click target after starting submenu listener:")
+  console.log(evt.target.innerHTML)
+  // 6.4 ????????
+  // if (evt.target.innerHTML === 'about') {
+  //   h1El.textContent = 'about'
+  // }
+});
