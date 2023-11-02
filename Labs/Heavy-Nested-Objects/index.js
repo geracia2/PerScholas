@@ -76,6 +76,9 @@ let complicatedNestedObject = {
 // > Objective < Access the value "This is a value at level 15" and "this is a final value". 
 // this can be done with a long object notation or a loop.
 
+// brute force
+console.log(complicatedNestedObject['level1']['level2']['nestedObject']['level3']['level4']['nestedObject']['level5']['level6']['nestedObject']['level7']['level8']['nestedObject']['level9']['level10']['nestedObject']['level11']['level12']['nestedObject']['level13']['level14']['nestedObject']['level15']['nestedObject'])
+// console.log(complicatedNestedObject.level1.level2.nestedObject.level3.level4.nestedObject.level5.level6.nestedObject.level7.level8.nestedObject.level9.level10.nestedObject.level11.level12.nestedObject.level13.level14.nestedObject.level15.nestedArray[0])
 /*
 // ! what about reverse engineering it into a function? !
 function generateNestedObject(levels) {
