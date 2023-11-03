@@ -221,3 +221,7 @@ const kristynsCloset = [
   kristynsOutfit = `Kristyn is wearing their ${kristynsCloset[2]} that matches with the ripped ${thomsCloset[1][0]} and wraps the whole outfit with a comfortable ${kristynsCloset[3]}`
   kristynsOutfit2 = `Kristyn is wearing their ${kristynsCloset[4]} that matches with their flannel ${thomsCloset[0][1]} and wraps the whole outfit with a warm pair of ${thomsCloset[2][0]}`
   kristynsOutfit3 = `Kristyn is wearing their ${kristynsCloset[5]} that matches with their  ${thomsCloset[0][3]} and wraps the whole outfit with a stylish pair of ${thomsCloset[2][2]}`
+
+
+
+  
