@@ -426,9 +426,9 @@ The function should return an array of numbers where each number is the length o
 function getTwoLengthsthat(string1, string2){
   let length1 = string1.length
   let length2 = string2.length
-  return [length1,length2]  
+  return [length1, length2]  
 }
-
+console.log('get two lengths ' + getTwoLengthsthat('super long string', 'another string'))
 /*
 F. getMultipleLengths
 Write a function getMultipleLengths that accepts a single parameter as an argument: an array of strings. 
@@ -438,11 +438,11 @@ function getMultipleLengths(arr) {
     let arrCorStr=[];
     for (let i of arr){
         console.log(i.length)
-        arrCorStr[i] = [i].length;
+        arrCorStr.push(i.length)
     }
     return arrCorStr;
 }
-getMultipleLengths(['this was', 'in the', 'homework'])
+console.log('get multiple lengths: ' + getMultipleLengths(['this was', 'in the', 'homework']))
 
 /* 
 Define a function maxOfThreethat takes three numbers as arguments and returns the largest of them. If all numbers are the same, 
@@ -464,14 +464,27 @@ if (x >= y && z) {
 console.log(maxOfThreeNumbers (5, 3 ,2));
 
 /**
- H
+ H.  printLongestWord
 */
 
+function printLongestWord(words) {
+  let longestWord = words[0];
+  for (let i = 1; i < words.length; i++) {
+    const currentWord = words[i];
+    if (currentWord.length > longestWord.length) {
+      longestWord = currentWord;
+    }
+  }
+  return longestWord;
+}
+const result = printLongestWord(["BoJack", "Princess", "Diane", "a", "Max", "Peanutbutter", "big", "Todd"]);
+console.log(`longest word result: ${result}`);
 
-
-/* Create an object called user.
+/* 
+Create an object called user.
 Write in to the object the key-value pairs for name, email, age, and purchased. 
-Set the value of purchasedto an empty array []. Set the other values to whatever you would like.*/
+Set the value of purchased to an empty array []. Set the other values to whatever you would like.
+*/
 
 user = {
   name:'Jim',
@@ -483,20 +496,156 @@ user = {
 
 /*
 B. Update the user
-Our user has changed his or her email address. 
-    -Without changing the original user object, update the email value to a new email address.
-
-    Our user has had a birthday! Without changing the original user object,
-        increment the age value using the postfix operator. Hint: age++
 */
 
 user.email = 'newgmail@gmail.com';
 user.age++
-console.log(user)
+console.log(`should have newgmail and age 33 ${user.age} and ${user.email}`)
 
 
 
 /*
 C. 
-Without changing the original userobject, add a new key locationto the object, and give it a value or some-or-other location (a string).
+Without changing the original user object, add a new key location
+to the object, and give it a value or some-or-other location (a string).
+*/
+user.location = 'Savana'
+console.log(`should have a new key location of Savana ${user.location}`)
+
+/*
+D. 
+Our user has purchased an item! They have purchased some "carbohydrates". Using .push(), add the string "carbohydrates" to the purchased array.
+Our user has purchased an item! They have purchased some "peace of mind". Using .push(), add the string "peace of mind" to the purchased array.
+Our user has purchased an item! They have purchased some "Merino jodhpurs". Using .push(), add the string "Merino jodhpurs" to the purchased array.
+Console.log just the "Merino jodhpurs" from the purchased array.
+*/
+
+user.purchased.push('carbohydrates')
+user.purchased.push('peace of mind')
+user.purchased.push('Merino jodhpurs')
+console.log(`should be merino jodhpurs ${user.purchased[2]}`)
+
+
+/*
+ E. Object-within-object
+*/
+user.friend = {
+  name: "Grace Hopper",
+  age: 85,
+  location: "a place",
+  purchased: [] 
+}
+console.log(user.friend.name);
+console.log(user.friend.location);
+user.friend.age = 55;
+user.friend.purchased.push('The One Ring');
+user.friend.purchased.push('A latte');
+console.log(user.friend.purchased[1]);
+
+// F. Loops
+
+//     Write a for loop that iterates over the User's purchased array (NOT the friend's purchased array), and prints each element to the console.
+
+
+for (let purchased of user.purchased) {
+  console.log("User purchased: " + purchased);
+}
+
+//     Write a for loop that iterates over the Friend's purchased array, and prints each element to the console.
+
+for (let purchased of user.friend.purchased) {
+  console.log("Friend purchased: " + purchased);
+}
+
+
+
+/* G. 
+1.
+Write a single function updateUser that takes no parameters. When the function is run, it should:
+it should increment the user's age by 1
+make the user's name uppercase
+The function does not need a return statement, it will merely modify the user object.
+*/
+
+function updateUser(){
+  user.age ++
+  user.name = user.name.toUpperCase();
+}
+updateUser()
+console.log(user.age, user.name)
+
+/* 
+2.
+Write a function oldAndLoud that performs the exact same tasks as updateUser, but instead of hard-coding it to only work on our user object, 
+make it take a parameter person, and have it modify the object that is passed in as an argument when the function is called.
+Call your oldAndLoud function with user as the argument.
+*/
+
+function oldAndLoud(person){
+  person.age ++
+  person.name = person.name.toUpperCase()
+}
+oldAndLoud(user.friend)
+console.log(user.friend)
+
+/*
+1. Mama cat
+Define an object called cat1that contains the following properties:
+name
+breed
+age (a number)
+console.log the cat's age
+console.log the cat's breed
+*/
+
+let cat1 = {
+  name: "Toast",
+  breed: "Bengal",
+  age: 4,
+}
+
+console.log(cat1.age);
+console.log(cat1.breed);
+
+/*
+2. Papa cat
+Define an object called cat2 that also contains the properties:
+
+name
+breed
+age (a number)
+*/
+
+let cat2 = {
+  name:'Milkshakes',
+  breed:'Orange',
+  age:1  
+}
+
+/*
+3. Combine Cats!
+*/
+function combineCats(mama, papa) {
+  // console.log(mama, papa)
+  let combineCatsObj = {};
+  combineCatsObj.name = mama.name + papa.name;
+  combineCatsObj.age = 1;
+  combineCatsObj.breed = mama.breed + '-' + papa.breed;
+  return combineCatsObj;
+}
+
+
+
+console.log(combineCats(cat1, cat2))
+
+
+/*
+4. Cat brain bender
+*/
+console.log(combineCats(combineCats(cat1, cat2), combineCats(cat1, cat2)));
+console.log(combineCats(combineCats(combineCats(cat1, cat2), combineCats(cat1, cat2)), combineCats(combineCats(cat1, cat2), combineCats(cat1, cat2))))
+
+
+/* 
+
 */
