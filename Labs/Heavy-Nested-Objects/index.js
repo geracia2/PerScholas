@@ -73,12 +73,53 @@ let complicatedNestedObject = {
     }
   }
 };
-// > Objective < Access the value "This is a value at level 15" and "this is a final value". 
+// > Objective < Access the value "This is a value at level 15" 
+// and "this is a final value". 
 // this can be done with a long object notation or a loop.
 
 // brute force
-console.log(complicatedNestedObject['level1']['level2']['nestedObject']['level3']['level4']['nestedObject']['level5']['level6']['nestedObject']['level7']['level8']['nestedObject']['level9']['level10']['nestedObject']['level11']['level12']['nestedObject']['level13']['level14']['nestedObject']['level15']['nestedObject'])
-// console.log(complicatedNestedObject.level1.level2.nestedObject.level3.level4.nestedObject.level5.level6.nestedObject.level7.level8.nestedObject.level9.level10.nestedObject.level11.level12.nestedObject.level13.level14.nestedObject.level15.nestedArray[0])
+console.log(complicatedNestedObject['level1']['level2']['nestedObject']['level3']['level4']['nestedObject']['level5']['level6']['nestedObject']['level7']['level8']['nestedObject']['level9']['level10']['nestedObject']['level11']['level12']['nestedObject']['level13']['level14']['nestedObject']['level15'])
+
+console.log(complicatedNestedObject.level1.level2.nestedObject.level3.level4.nestedObject.level5.level6.nestedObject.level7.level8.nestedObject.level9.level10.nestedObject.level11.level12.nestedObject.level13.level14.nestedObject.level15)
+
+// recursive with a for.in that looks for  an object then dives.
+// if it finds a string
+let depthCounter = 0;
+function iterateObject(obj, maxDepth) {
+  for (var key in obj) { 
+    if (typeof obj[key] === 'string' && obj[key] !== null) {
+      depthCounter++;
+      console.log(`Current depth: ${depthCounter} of ${maxDepth}`);
+      if (depthCounter === maxDepth) { // final destination
+        console.log(key + ':', obj[key]);
+        break;
+      } 
+    } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+      iterateObject(obj[key], maxDepth);
+    }
+  }
+}
+iterateObject(complicatedNestedObject, 15)
+
+/*
+make this work with a string finder?
+function iterateObject(obj, query) {
+  for (var key in obj) { 
+    obj[key].find((element) => element === query)
+    if (typeof obj[key] === 'string' && obj[key] !== null) {
+      depthCounter++;
+      console.log(`Current depth: ${depthCounter} of ${maxDepth}`);
+      if (depthCounter === query) { // final destination
+        console.log(key + ':', obj[key]);
+        break;
+      } 
+    } else if (typeof obj[key] === 'object' && obj[key] !== null) {
+      iterateObject(obj[key], maxDepth);
+    }
+  }
+}
+iterateObject(complicatedNestedObject, "This is a value at level 15")
+*/
 /*
 // ! what about reverse engineering it into a function? !
 function generateNestedObject(levels) {
@@ -214,24 +255,3 @@ function iterateObject (obj, maxDepth = 16) { // this is just 16 to illustrate
 */
 
 
-let depthCounter = 0;
-function iterateObject(obj, maxDepth) {
-  const stop = maxDepth;
-  for (var key in obj) {
-    if (typeof obj[key] === 'string' && obj[key] !== null) {
-      depthCounter++;
-      console.log(depthCounter);
-      console.log(key + ':', obj[key])
-      // if (depthCounter = maxDepth) {
-      //   console.log(key + ':', obj[key]);
-      //   return;
-      // } else {
-      //   continue;
-      // }
-    } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-      iterateObject(obj[key]);
-    }
-
-  }
-}
-iterateObject(complicatedNestedObject, 3)
