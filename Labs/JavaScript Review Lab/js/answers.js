@@ -118,8 +118,8 @@ console.log(favMovies[18]) // if mutated we get the value of whatever we shifted
 ////////////////////////////////
 const whereIsWaldo = [["Timmy", "Frank"],      // whereIsWaldo[0], whereIsWaldo[0][0], whereIsWaldo[0][1]
                         "Eggbert",             // whereIsWaldo[1]
-                    ["Lucinda", "Jacc", "Neff", "Snoop"],
-                    ["Petunia", ["Baked Goods", "Waldo"]]];
+                    ["Lucinda", "Jacc", "Neff", "Snoop"], // whereIsWaldo[1]
+                    ["Petunia", ["Baked Goods", "Waldo"]]];// whereIsWaldo[2][1]
 // write code below
 
 whereIsWaldo.splice(1, 1); 
@@ -159,10 +159,23 @@ for(let i = 0; i<20; i++){
 ////////////////////////////////
 const nums = [14,11,16,15,13,16,15,17,19,11,12,14,19,11,15,17,11,18,12,17,12,71,18,15,12];
 // write code below
-// media is (sum of all numbers) / (number of numbers) = answer.Math.floor()
+// looking for the middle number of an array
+// const array1 = [1, 30, 4, 21, 100000];
+// 
+// console.log(array1);
+// Expected output: Array [1, 100000, 21, 30, 4]
 
-for (let i=0; i>nums.length; i++)
-console.log
+function median (array) {
+  let newNums = array.sort((a, b) => a - b); // mutates the original array
+  console.log(newNums)
+  let medianIndex = Math.floor(newNums.length / 2); // find the middle number index
+  return newNums[medianIndex - 1] // select and log the middle index
+}
+
+
+console.log(median(nums))
+
+///////////////////////////////
 //  Hungry for More?
 // Kristyn's left shoe has traveled through time and space and turned up in Thom's accessories drawer! Remove Kristyn's shoe from the array and save it to the variable kristynsShoe. Use that variable to add Kristyn's lost shoe to Thom's accessories array.
 // Modify your code to put together 3 separate outfits for Kristyn and Thom. Put the output in a sentence to tell us what we'll be wearing. Mix and match!
