@@ -27,21 +27,21 @@ for(let i = 0; i<= 200; i++){
 
 const fizzbuzz = [];
 
-// for (let x = 1; x <= 100; x++) {
-//   x % 3 === 0 ? (x % 5 === 0 ? fizzbuzz.push("FizzBuzz") : fizzbuzz.push("Fizz")) : (x % 5 == 0 ? fizzbuzz.push("Buzz") : fizzbuzz.push(x));
-// }
-
 for (let x = 1; x <= 100; x++) {
-  if ((x % 3 === 0) && (x % 5 === 0)) {
-    fizzbuzz.push("fizzbuzz");
-  } else if (x % 3 === 0) {
-    fizzbuzz.push("fizz");
-  } else if (x % 5 === 0) {
-    fizzbuzz.push("buzz");
-  } else {
-    fizzbuzz.push(x);
-  }
+  x % 3 === 0 ? (x % 5 === 0 ? fizzbuzz.push("FizzBuzz") : fizzbuzz.push("Fizz")) : (x % 5 == 0 ? fizzbuzz.push("Buzz") : fizzbuzz.push(x));
 }
+
+// for (let x = 1; x <= 100; x++) {
+//   if ((x % 3 === 0) && (x % 5 === 0)) {
+//     fizzbuzz.push("fizzbuzz");
+//   } else if (x % 3 === 0) {
+//     fizzbuzz.push("fizz");
+//   } else if (x % 5 === 0) {
+//     fizzbuzz.push("buzz");
+//   } else {
+//     fizzbuzz.push(x);
+//   }
+// }
 
 console.log(fizzbuzz);
 
@@ -116,10 +116,16 @@ console.log(favMovies[18]) // if mutated we get the value of whatever we shifted
 // Change "Neff" to "No One"
 // Access and console.log "Waldo"
 ////////////////////////////////
-const whereIsWaldo = [["Timmy", "Frank"], "Eggbert",
+const whereIsWaldo = [["Timmy", "Frank"],      // whereIsWaldo[0], whereIsWaldo[0][0], whereIsWaldo[0][1]
+                        "Eggbert",             // whereIsWaldo[1]
                     ["Lucinda", "Jacc", "Neff", "Snoop"],
                     ["Petunia", ["Baked Goods", "Waldo"]]];
 // write code below
+
+whereIsWaldo.splice(1, 1); 
+whereIsWaldo[1][2] = "No One";
+console.log(whereIsWaldo[2][1][1]); 
+
 
 
 ////////////////////////////////
@@ -148,11 +154,13 @@ for(let i = 0; i<20; i++){
 
 ////////////////////////////////
 //  Find the Median
-// Find the median number in the following numsarray, then console.log that number.
+// Find the median number in the following nums array, then console.log that number.
 // hint if you check the length of the array / 2, you might get not get a whole number. In which case, look into Math.floor( // something )
 ////////////////////////////////
-
 const nums = [14,11,16,15,13,16,15,17,19,11,12,14,19,11,15,17,11,18,12,17,12,71,18,15,12];
+// write code below
+// media is (sum of all numbers) / (number of numbers) = answer.Math.floor()
+
 for (let i=0; i>nums.length; i++)
 console.log
 //  Hungry for More?
