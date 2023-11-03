@@ -1,3 +1,23 @@
+// 3.0 
+// Menu data structure
+var menuLinks = [
+  {text: 'about', href: '/about'},
+  {text: 'catalog', href: '#', subLinks: [        //menuLinks[1].subLinks -array
+    {text: 'all', href: '/catalog/all'},          //menuLinks[1].subLinks[0].text -value
+    {text: 'top selling', href: '/catalog/top'},
+    {text: 'search', href: '/catalog/search'},
+  ]},
+  {text: 'orders', href: '#' , subLinks: [
+    {text: 'new', href: '/orders/new'},
+    {text: 'pending', href: '/orders/pending'},
+    {text: 'history', href: '/orders/history'},
+  ]},
+  {text: 'account', href: '#', subLinks: [
+    {text: 'profile', href: '/account/profile'},
+    {text: 'sign out', href: '/account/signout'},
+  ]},
+];
+
 // 1.0 Select and cache the <main> element in a variable named mainEl.
 // ------------ Node List selector --------------
 const mainEl = document.querySelector("main");
@@ -5,20 +25,17 @@ const mainEl = document.querySelector("main");
 // -------- HTMLCollection & selectorAll --------
 // const mainEl = document.getElementsByTagName('main');
 
-
 // 1.1 Set the background color of mainEl to the value stored in the --main-bg CSS custom property.
 // ------------ Node List selector --------------
 mainEl.style.backgroundColor = 'var(--main-bg)';
 // -------- HTMLCollection & selectorAll --------
 // mainEl[0].style.backgroundColor = 'var(--main-bg)';
 
-
 // 1.2 Set the content of mainEl to <h1>SEI Rocks!</h1>.
 // ------------ Node List selector --------------
 mainEl.innerHTML = '<h1>SEI Rocks!</h1>';
 // -------- HTMLCollection & selectorAll --------
 // mainEl[0].innerHTML = '<h1>SEI Rocks!</h1>'
-
 
 // 1.3 Add a class of flex-ctr to mainEl.
 // ------------ Node List selector --------------
@@ -29,7 +46,6 @@ mainEl.classList.add("flex-ctr");
 // });
 // -------- HTMLCollection & selectorAll --------
 // mainEl[0].className = 'flex-ctr';
-
 
 // 2.0 Select and cache the <nav id="top-menu"> element in a variable named topMenuEl.
 // ------------ Node List selector --------------
@@ -43,40 +59,17 @@ topMenuEl.style.height = '100%';
 // -------- HTMLCollection & selectorAll --------
 // topMenuEl[0].style.height = '100%';
 
-
 // 2.2 Set the background color of topMenuEl to the value stored in the --top-menu-bg CSS custom property.
 // ------------ Node List selector --------------
 topMenuEl.style.backgroundColor = 'var(--top-menu-bg)';
 // -------- HTMLCollection & selectorAll --------
 // topMenuEl[0].style.backgroundColor = 'var(--top-menu-bg)';
 
-
 // 2.3 Add a class of flex-around to topMenuEl.
 // ------------ Node List selector --------------
 topMenuEl.classList.add('flex-around');
 // -------- HTMLCollection & selectorAll --------
 // topMenuEl[0].classList.add('flex-around');
-
-
-// 3.0 
-// Menu data structure
-var menuLinks = [
-    {text: 'about', href: '/about'},
-    {text: 'catalog', href: '#', subLinks: [        //menuLinks[1].subLinks -array
-      {text: 'all', href: '/catalog/all'},          //menuLinks[1].subLinks[0].text -value
-      {text: 'top selling', href: '/catalog/top'},
-      {text: 'search', href: '/catalog/search'},
-    ]},
-    {text: 'orders', href: '#' , subLinks: [
-      {text: 'new', href: '/orders/new'},
-      {text: 'pending', href: '/orders/pending'},
-      {text: 'history', href: '/orders/history'},
-    ]},
-    {text: 'account', href: '#', subLinks: [
-      {text: 'profile', href: '/account/profile'},
-      {text: 'sign out', href: '/account/signout'},
-    ]},
-  ];
 
 // 3.1 Iterate over the entire menuLinks array and for each "link" object:
 // ---- Create an <a> element.
@@ -112,7 +105,6 @@ for (let value of menuLinks){
 //     link.textContent = array[index].text;
 //     topMenuEl.appendChild(link);
 // });
-
 
 // --------------- PART 2 ---------------------
 // --------------------------------------------
@@ -174,8 +166,8 @@ topMenuEl.addEventListener('click', function(evt) {
 
   let subLinks = []; 
   let linkElement = menuLinks.find(({text}) => text === evt.target.innerHTML)
-  console.log("link element:")
-  console.dir(linkElement)
+  // console.log("link element:")
+  // console.dir(linkElement)
   for (const key in menuLinks) {
     // hasOwnProperty kinda like saying "does this array have a property key named('')"
     if (linkElement.hasOwnProperty('subLinks')) {
@@ -200,13 +192,14 @@ topMenuEl.addEventListener('click', function(evt) {
   // 5.8  buildSubMenu function
   function buildSubMenu(obj) {
     // subMenuEl.remove() // this removes it completely, not clears it
-    subMenuEl.innerHTML = ''  // it does remove hard code elements
+    // subMenuEl.innerHTML = ''  // it does remove hard code elements
     // subMenuEl.removeChild(subMenuEl.firstChild); // may be it unless we need to clear more than 1
+    subMenuEl.replaceChildren();
     for (let value of obj){//does this need to be a for each to work with about?
       // console.dir(value)
       let link = document.createElement('a');
-      link.setAttribute('href', value.href); 
-      link.textContent = value.text;
+      link.href = value.href; 
+      link.text = value.text;
       subMenuEl.appendChild(link);
     }
     // obj.forEach(function(element, index, obj) {
@@ -218,8 +211,7 @@ topMenuEl.addEventListener('click', function(evt) {
   }
   // 6.4 ????????
   if (evt.target.innerHTML === 'about') {
-    const h1El = document.querySelector('h1');
-    h1El.textContent = 'about'
+    mainEl.innerHTML = `<h1>${evt.target.text}</h1>`
   }
 });
 
@@ -242,15 +234,15 @@ subMenuEl.addEventListener('click', function (evt) {
   subMenuEl.style.top = '0';
 
   // 6.2 
-  evt.target.classList.remove('active')
+  for (let value of topMenuLinks) {
+    value.classList.remove("active");
+    }
 
   // 6.3 
   const h1El = document.querySelector('h1');
   h1El.textContent = evt.target.innerHTML
-  console.log("click target after starting submenu listener:")
-  console.log(evt.target.innerHTML)
-  // 6.4 ????????
-  // if (evt.target.innerHTML === 'about') {
-  //   h1El.textContent = 'about'
-  // }
+  // console.log("click target after starting submenu listener:")
+  // console.log(evt.target.innerHTML)
+  // 6.4
+  mainEl.innerHTML = `<h1>${evt.target.text}</h1>`;
 });
