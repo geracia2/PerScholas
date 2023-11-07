@@ -16,17 +16,14 @@ install NPM Steps
 2. Now Type npm init -y in Your Terminal or Command Prompt & Hit Enter on Your Keyboard
 3. Now Type npm install prompt-sync in Your Terminal or Command Prompt & Hit Enter on Your Keyboard
 */
+const prompt = require("prompt-sync")();
 
 
 ////////////////////////////
 // INTRO SETUP
 ////////////////////////////
 
-const prompt = require("prompt-sync")();
 console.log(`\n\n*************************\nThe year is 3789. \nHumanity is on the brink of destruction.\nYou are the last survivor of the United Human Space Naval Fleet.\nThe enemy is closing in...\n\n*************************`);
-// let commanderName = prompt(`What is your name? `); 
-let commanderName = "a commander name"; 
-// console.log(`\n\nHello commander ${commanderName}!\n\n`);
 // let shipName = prompt("What is your ship's name? ");
 let shipName = 'SHIP NAME';
 console.clear; // clear after intro?
