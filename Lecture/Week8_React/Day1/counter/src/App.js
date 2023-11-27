@@ -2,79 +2,95 @@
 import './App.css';
 import{ useState } from 'react' // special function
 
-// what is happening inside useState():
-// useState(initialState) {
-// return[value, value]
-// return[stateValue, functionThatChanges()]
-// return[stateVariable, setState()]
-// }
+// calc
+
+// addition
+// sub
+// multiply 
+// divide
+
+// reset input to ''
 
 function App() {
-  // let stateArray = useState(0) // -> [stateVariable, functionThatChangesIt]
-  // let counter = stateArray[0]
-  // let setCounter = stateArray[1]
-
-  // array destructuring, replaced the above 3 lines.
-  // [stateVariable, functionThatChangesIt] = initialState('anything')
-  let [counter, setCounter] = useState(0)
-  // let [counter, setCounter] = useState('0') if your initial state is a string, it will just concatenate
-
+  
+//  result --------------------------
+  let [result, setResult] = useState(0)
 
   function handleInc(evt) {
-    // alert('works')
-    // counter++  can't treat it like this. You need to grab the variable from memory with setCounter
-    setCounter(counter + 1) 
+      setResult(result + 1) 
   }
 
-  // this is also like having an eventListener so you can use event as a parameter
   function handleDec(evt){
-    // passing the next state directly
-    // setCounter(counter - 1)
-    // updater function
-    // setCounter(previousState => {return nextState})
-    setCounter(counter => counter - 1)
+    setResult(result => result - 1)
+  }
+//  text field --------------------------
+  const [typedInput, setTypedInput] = useState(0)
+
+  function handleTypedInput(evt) {
+    setTypedInput(evt.target.value)
   }
 
-  const [typedNumber, setTypedNumber] = useState(0)
-  function handleTypedNumber(evt) {
-    // let newValue = evt.target.value
-    // setTypedNumber(newValue)
-    // same as the above 2 lines
-    setTypedNumber(evt.target.value)
+// setup pure functions -------------------
+const [formula, setFormula] = useState('')
+// const [formConcat, setFormConcat] = useState('')
+  function handleAddition() {
+    setResult(result + Number(typedInput));
+    // change a formula state
+    setTypedInput('')
+    // updated  value of the formula 
+    setFormula(result + ' + ' + typedInput)
   }
-  function handleTypedUpdate() {
-    // let a = counter;
-    // let b = typedNumber;
-    // console.log(a)
-    // console.log(b)
-    // setCounter(a + b)
-    setCounter(counter + Number(typedNumber)) // you get a string from form so you need to turn it into an integer
-    // setCounter(a => a + typedNumber)
+  function handleSubtraction() {
+    setResult(result - Number(typedInput))
+    setTypedInput('')
+    setFormula(result + ' - ' + typedInput)
   }
-  
-
-  const [typedText, setTypedText] = useState('hello')
-  // remember this is like an event listener, the event is 
-  function handleTextChange(evt) {
-    setTypedText(evt.target.value);
+  function handleMultiply() {
+    setResult(result * Number(typedInput))
+    setTypedInput('')
+    setFormula(result + ' * ' + typedInput)
   }
+  function handleDivide() {
+    setResult(result / Number(typedInput))
+    setTypedInput('')
+    setFormula(result + ' / ' + typedInput)
+  }
+function getFormula() {
+    setFormula(result + ' / ' + typedInput)
+//     // return result + formula + typedInput
+//     // setFormConcat(result + ' ' + formula + ' ' + typedInput)
+//     // setFormConcat(result + typedInput)
+//     setFormConcat(formula)
+//     console.log(`result: ${result}`);
+//     console.log(`formula: ${formula}`);
+//     console.log(`typed: ${typedInput}`);
+    console.log('test')
+}
+function clearTypeInput(){
+    setTypedInput('')
 
-  return (
-    <div>
-      <p>Counter: {counter}</p>
-      <button onClick={handleInc}>+</button>
-      <button onClick={handleDec}>-</button>
-      <br />
-      <input type="number" value={typedNumber} onChange={handleTypedNumber} />
-      <input type="button" value="increment" onClick={handleTypedUpdate} />
-      <br />
-      <hr />
+}
 
-      {/* value is what is in the field, onChange is a react function listening for changes with a parameter of whatever you put in the following {} */}
-      <input value={typedText} onChange={handleTextChange} />
-      <p>you typed: {typedText}</p>
-      {/* a headless function allows us to add a function without it being called automatically by JSX */}
-      <button onClick={()=> setTypedText('hello')}>Reset</button>
+return (
+    <div className='container'>
+        {/* {currentresult} {formula} {typedInput}*/}
+        {/* <p>Formula <input value={()=> result + ' ' + formula + ' ' + typedInput} /> </p> */}
+        <div className='cal'>
+        <span>Calculate</span>
+        <input className='formula' value={formula} />
+        </div>
+        <button onClick={handleInc}>+</button>
+        <button onClick={handleDec}>-</button>
+        <input type="number" value={typedInput} onChange={handleTypedInput} />
+        {/* <button onClick={() => {handleAddition(); getFormula();}}>Addition</button> */}
+        {/* <button onClick={()=> {handleAddition; getFormula}}>Addition</button> */}
+        <div className='operators'>
+        <button onClick={handleAddition}>Addition</button>
+        <button onClick={handleSubtraction}>Subtraction</button>
+        <button onClick={handleMultiply}>Multiply</button>
+        <button onClick={handleDivide}>Divide</button>
+        </div>
+        <h1>Result: {result}</h1>
     </div>
   );
 }
