@@ -5,10 +5,10 @@
     
   justify-content: center; 
   align-items: center; 
-  /* flex-flow: row wrap; */ 
-  flex-direction: row; 
+  flex-flow: row wrap; 
+  flex-direction: column; 
   flex-wrap: wrap; 
-  align-content: center;
+  align-content: center; 
 
   height: 100%;
   padding: 15px;
@@ -37,6 +37,7 @@
   margin: 10px;
   border: #282c34 solid 2px;
 }
+
 .kitchen {
   background-color: rgb(240, 166, 60);
 }
