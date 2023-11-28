@@ -23,6 +23,7 @@ function App() {
   function handleDec(evt){
     setResult(result => result - 1)
   }
+
 //  text field --------------------------
   const [typedInput, setTypedInput] = useState(0)
 
@@ -30,9 +31,10 @@ function App() {
     setTypedInput(evt.target.value)
   }
 
-// setup pure functions -------------------
+// math functions -------------------
+
 const [formula, setFormula] = useState('')
-// const [formConcat, setFormConcat] = useState('')
+
   function handleAddition() {
     setResult(result + Number(typedInput));
     // change a formula state
@@ -81,10 +83,15 @@ return (
         </div>
         <button onClick={handleInc}>+</button>
         <button onClick={handleDec}>-</button>
+
         <input type="number" value={typedInput} onChange={handleTypedInput} />
-        {/* <button onClick={() => {handleAddition(); getFormula();}}>Addition</button> */}
-        {/* <button onClick={()=> {handleAddition; getFormula}}>Addition</button> */}
+
+        <button onClick={() => {
+            handleAddition(); 
+            getFormula()
+            }}>Addition</button>
         <div className='operators'>
+        {/* <button onClick={()=> {handleAddition; getFormula}}>Addition</button> */}
         <button onClick={handleAddition}>Addition</button>
         <button onClick={handleSubtraction}>Subtraction</button>
         <button onClick={handleMultiply}>Multiply</button>

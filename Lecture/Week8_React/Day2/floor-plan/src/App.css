@@ -1,0 +1,57 @@
+.App {
+  text-align: center;
+
+  display: flex;
+    
+  justify-content: center; 
+  align-items: center; 
+  /* flex-flow: row wrap; */ 
+  flex-direction: row; 
+  flex-wrap: wrap; 
+  align-content: center;
+
+  height: 100%;
+  padding: 15px;
+  gap: 5px;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+/* layer 1 */
+.App > div > div {
+  margin: 10px;
+  border: #282c34 solid 2px;
+}
+/* layer 2 */
+.App > div > div > div {
+  margin: 10px;
+  border: #282c34 solid 2px;
+}
+.kitchen {
+  background-color: rgb(240, 166, 60);
+}
+.bath{
+  background-color: rgb(113, 136, 49);
+}
+.oven {
+ background-color: rgb(147, 87, 19);
+}
+.sink {
+  background-color: rgb(201, 72, 22);
+}
+.livingRoom {
+  background-color: rgb(201, 171, 129);
+}
+.bedroom {
+  background-color: rgb(43, 112, 136);
+}
