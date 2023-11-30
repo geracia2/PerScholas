@@ -1,6 +1,6 @@
 import './App.css';
 import {useState} from 'react'
-
+import List from "./components/List";
 
 function App() {
   const [todos, setTodos] = useState([])
@@ -11,13 +11,21 @@ function App() {
   }
   function handleClick(){
     if (input !==''){
-      let newTodos = todos.slice() // without arguments slice just returns a copy
-      newTodos.push(input) // we don't want to directly modify the state var todos because it will not be redrawn by setState()
-      setTodos(newTodos)
+      // let newTodos = todos.slice() // without arguments slice just returns a copy
+      // newTodos.push(input) // we don't want to directly modify the state var todos because it will not be redrawn by setState()
+      // setTodos(newTodos)
       
+      let newObjTodo = {
+        text: input,
+        completed: false,
+        id: crypto.randomUUID()
+      }
+
       // setTodos( prevTodos => [...prevTodos, input] ) // updater function
       // setTodos([...prevTodos, input]) // shorter way to do the above
-      setInput('')
+      setTodos([...todos, newObjTodo]) 
+      // clear text field
+      setInput('') 
     } else {
       alert('Please add something')
     }
@@ -33,8 +41,9 @@ function App() {
       <button onClick={handleClick}>Add</button>
       <>
         <ul>
-          {todos.map((value, index)=>(
-            <li key={index}>{value}</li>
+          <button></button>
+          {todos.map((item, index)=>(
+            <li key={item.id}>{item.text}</li>
           ))}
         </ul>
       </>
