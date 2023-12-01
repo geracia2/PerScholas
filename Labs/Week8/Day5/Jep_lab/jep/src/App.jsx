@@ -8,6 +8,7 @@ function App() {
 const [question, setQuestion] = useState(null)
 const [answer, setAnswer] = useState('')
 const [score, setScore] = useState(0)
+const [reveal, setReveal] = useState(false)
 
 async function handleGetRequest(e){
   e.preventDefault();
@@ -18,7 +19,12 @@ async function handleGetRequest(e){
 }
 
 function handleAnswer(){
-  setAnswer(question[0]?.answer)
+  setReveal(!reveal)
+  if (reveal == false){
+    setAnswer(question[0]?.answer)
+  } else {
+    setAnswer('')
+  }
 }
 
   return (
@@ -27,7 +33,6 @@ function handleAnswer(){
       {question && 
       <>
         <div><h2>Score: {score}</h2> </div>
-
         <button onClick={()=> setScore((a)=> a - question[0]?.value)}>Decrease</button>
         <button onClick={()=> setScore((a)=> a + question[0]?.value)}>Increase</button>
         <button onClick={()=> setScore(0)}>Reset</button>
