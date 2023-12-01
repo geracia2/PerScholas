@@ -1,0 +1,33 @@
+/* #root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: left;
+} */
+
+
+.container {
+  display: flex;
+    
+  justify-content: space-evenly; 
+  align-items: flex-start; 
+  /* flex-flow: row; */ 
+  flex-direction: row;  
+
+  height: 100%;
+  padding: 15px;
+  gap: 10px;
+
+  /* background-color: rgb(75, 75, 75); */
+
+}
+
+.flexItem{
+  background-color: rgb(48, 48, 48);
+  border-radius: 20px;
+  padding: 15px;
+}
+
+strong {
+  color: rgb(135, 88, 228);
+}
