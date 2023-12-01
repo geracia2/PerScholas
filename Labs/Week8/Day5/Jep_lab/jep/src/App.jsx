@@ -16,6 +16,8 @@ async function handleGetRequest(e){
   const data = await response.json()
   setQuestion(data)
   console.log(data)
+  setReveal(false)
+  handleAnswer()
 }
 
 function handleAnswer(){
@@ -46,14 +48,15 @@ function handleAnswer(){
         <div><h3>Category: </h3>{question[0]?.category.title}</div>
         <div><h3>Points:</h3> {question[0]?.value}</div>
         <div><h3>Question:</h3> {question[0]?.question}</div>
-        {/* <div><h3>Answer:</h3> {question[0]?.answer}</div> */}
       </div>
       }
 
       {question && 
+      <>
       <button onClick={handleAnswer}>Click to Reveal Answer</button>
-      }
       <div>{answer}</div>
+      </>
+      }
     </div>
   )
 }
