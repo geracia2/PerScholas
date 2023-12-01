@@ -15,9 +15,9 @@ async function handleGetRequest(e){
   const response = await fetch(`https://jservice.io/api/random`)
   const data = await response.json()
   setQuestion(data)
-  console.log(data)
-  setReveal(false)
-  handleAnswer()
+  // console.log(data)
+  setReveal(false) // reset
+  setAnswer('') // reset
 }
 
 function handleAnswer(){
