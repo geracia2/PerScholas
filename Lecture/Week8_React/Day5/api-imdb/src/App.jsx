@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 function App() {
   let [input, setInput] = useState('')
-  const [data, setData] = useState({})
+  let [data, setData] = useState({})
 
   function handleChange(e) {
     setInput(e.target.value)
@@ -34,15 +34,34 @@ function App() {
       console.log(error)
     }
   }
+
+  let displayData;
+  if (data) {
+    displayData= (
+      <div>
+          <h1>{data.Title}</h1>
+          <h3>{data.Year}</h3>
+          <h3>{data.Ratings?.[0].Value}</h3>
+          <img src={data.Poster} />
+        </div>
+    )
+  }
   
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <input type="text" value={input} onChange={handleChange} />
         <button>Submit</button>
-        <h1>{data.Title}</h1>
-        <h3>{data.Year}</h3>
-        <img src={data.Poster} />
+        <hr />
+        {displayData}
+        {/* {data && // truthy value, checking to see if you have data before rendering 
+        <div>
+          <h1>{data.Title}</h1>
+          <h3>{data.Year}</h3>
+          <h3>{data.Ratings?.[0].Value}</h3>
+          <img src={data.Poster} />
+        </div>
+      } */}
       </form>
     </div>
   );
