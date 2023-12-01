@@ -35,17 +35,17 @@ function App() {
     }
   }
 
-  let displayData;
-  if (data) {
-    displayData= (
-      <div>
-          <h1>{data.Title}</h1>
-          <h3>{data.Year}</h3>
-          <h3>{data.Ratings?.[0].Value}</h3>
-          <img src={data.Poster} />
-        </div>
-    )
-  }
+  // let displayData;
+  // if (data) {
+  //   displayData= (
+  //     <div>
+  //         <h1>{data.Title}</h1>
+  //         <h3>{data.Year}</h3>
+  //         <h3>{data.Ratings?.[0].Value}</h3>
+  //         <img src={data.Poster} />
+  //       </div>
+  //   )
+  // }
   
   return (
     <div>
@@ -53,15 +53,15 @@ function App() {
         <input type="text" value={input} onChange={handleChange} />
         <button>Submit</button>
         <hr />
-        {displayData}
-        {/* {data && // truthy value, checking to see if you have data before rendering 
+        {/* {displayData} */}
+        {data && // truthy value, checking to see if you have data before rendering 
         <div>
           <h1>{data.Title}</h1>
           <h3>{data.Year}</h3>
           <h3>{data.Ratings?.[0].Value}</h3>
           <img src={data.Poster} />
         </div>
-      } */}
+      }
       </form>
     </div>
   );
