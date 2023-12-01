@@ -7,6 +7,7 @@ import './App.css'
 function App() {
 const [question, setQuestion] = useState(null)
 const [answer, setAnswer] = useState('')
+const [score, setScore] = useState(0)
 
 async function handleGetRequest(e){
   e.preventDefault();
@@ -23,13 +24,15 @@ function handleAnswer(){
   return (
     <div> 
       <h1>Welcome to Jeopardy!</h1>
+      {question && 
+      <>
+        <div><h2>Score: {score}</h2> </div>
 
-      {/* <div><h2>Score:</h2> {}</div> */}
-
-      {/* <button>Decrease</button> */}
-      {/* <button>Increase</button> */}
-      {/* <button>Reset</button> */}
-
+        <button onClick={()=> setScore((a)=> a - question[0]?.value)}>Decrease</button>
+        <button onClick={()=> setScore((a)=> a + question[0]?.value)}>Increase</button>
+        <button onClick={()=> setScore(0)}>Reset</button>
+      </>
+      }
       <h2>Let's play!</h2>
       <button onClick={handleGetRequest}>Random Trivia Question</button>
 
