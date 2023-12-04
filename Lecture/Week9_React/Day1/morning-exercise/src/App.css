@@ -1,0 +1,109 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+.search {
+  /* border: hsl(88, 90%, 24%) solid 2px; */
+
+  justify-content: center;
+  align-items: stretch;
+
+  padding: 15px;
+  height: 3em;
+  display: flex;
+}
+input {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  text-align: center;
+  border-width: 1px;
+  border-color: #efefef;
+  background-color: #ffffff;
+  color: #000000;
+  border-style: solid;
+  border-radius: 50px;
+  box-shadow: 2px 5px 5px hsl(0, 0%, 90%);
+}
+.imgStyling {
+  min-width: 4em;
+  min-height: 4em;
+  max-height: 4em;
+  max-width: 4em;
+  /* height: 4em; */
+  /* width: 4em; */
+
+  border-radius: 100%;
+
+  padding: 15px;
+}
+.employeeList {
+  /* border: red solid 2px; */
+  height: 500px;
+  overflow: overlay;
+  /* padding: 15px; */
+  /* gap: 10px; */
+}
+.employee {
+  /* border: solid red 5px; */
+  background-color: hsl(0, 0%, 97%);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+
+  margin: 15px;
+  /* height: 100%; */
+  /* padding: 15px; */
+  /* gap: 5px; */
+}
+
+.flexStack {
+  /* border: solid blue 5px; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+
+  flex-basis: 100%;
+
+  /* background-color: hsl(0, 0%, 94%); */
+  /* border-radius: 1em; */
+  height: 100%;
+  padding: 15px;
+  /* gap: 5px; */
+}
+
+.name {
+  font-family: "Arial Black", Gadget, sans-serif;
+  font-size: 1.4rem;
+  color: rgb(0, 0, 0);
+}
+
+.email {
+  font-family: "Archivo Narrow", sans-serif;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
