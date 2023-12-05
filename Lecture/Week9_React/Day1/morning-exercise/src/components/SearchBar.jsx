@@ -19,8 +19,8 @@ export default function SearchBar({ employee, setFilteredData }) {
       setFilteredData(null)
     }
   }
-  console.log('input:')
-  console.log(input)
+  // console.log('input:')
+  // console.log(input)
 
   // console.log(filteredEmployees);
 

@@ -1,4 +1,5 @@
 // import data from "../data";
+import { Fragment } from "react";
 import EmployeeListItem from "./EmployeeListItem";
 
 export default function EmployeeList({employee}) {
@@ -7,12 +8,13 @@ export default function EmployeeList({employee}) {
       <div className="employeeList">
 
         {employee.map((employee) => (
-          <div className="employee" key={employee.id}>
-            <EmployeeListItem employee={employee} />
-          </div>
+          <Fragment key={employee.id}>
+            <EmployeeListItem employee={employee}  />
+          </Fragment>
         ))}
         
       </div>
+      // style={{backgroundColor: red}}
       // --------- static list data 
       // <div className="employeeList">
       //   {data.map((employee, index) => (
