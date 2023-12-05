@@ -1,15 +1,24 @@
 import {useState} from "react";
+let resetForm = {
+    first_name: '',
+    last_name: '',
+    email: '', 
+    avatar: ''
+}
 
-export default function Form() {
+export default function Form({addEmployee}) {
     // const [input, setInput] = useState(second)
     
     // setup a form object to capture form properties
-    const [form, setForm] = useState({
-        name: '',
-        title: '', 
-        phone: '',
-        email: ''
-    })
+    // since we want to reset this lets put it outside as a variable
+    // const [form, setForm] = useState({
+    //     first_name: '',
+    //     last_name: '',
+    //     email: '', 
+    //     avatar: ''
+    // })
+    let [form, setForm] = useState(resetForm)
+
 
     function handleChange(e){
         // we are creating a new object so we need the spread operator and add a new object
@@ -34,26 +43,29 @@ export default function Form() {
         setForm ({...form, [e.target.id]: e.target.value})
     }
 
-    function handleSubmit(){
-
+    function handleSubmit(e){
+    e.preventDefault();
+        let newEmployee= {
+            ...form, // previous forms of name, title, phone, email
+            avatar: '../images/headshot4.jpeg', // adding random heashot to new ones since we are not targeting them
+            id: crypto.randomUUID()
+        }
+        addEmployee(newEmployee)
+        setForm(resetForm) // reset form on submit
     }
 
     return (
-        <form action=''>
-            <label htmlFor="name">Name: </label>
-            {/* link label htmlFor to input id */}
-            <input id="name" value={form.name} onChange={handleChange} />
+        <form onSubmit={handleSubmit}>
+            <label htmlFor="first_name">First Name: </label>
+            <input id="first_name" value={form.first_name} onChange={handleChange} />
             <br />
-            <label htmlFor="title">Title: </label>
-            <input id="title" value={form.title} onChange={handleChange} />
-            <br />
-            <label htmlFor="phone">Phone: </label>
-            <input id="phone" value={form.phone} onChange={handleChange} />
+            <label htmlFor="last_name">Last Name: </label>
+            <input id="last_name" value={form.last_name} onChange={handleChange} />
             <br />
             <label htmlFor="email">Email: </label>
             <input id="email" value={form.email} onChange={handleChange} />
             <br />
-            <input type="button" value="Submit" />
+            <button>Submit</button>
         </form>
     )
 }
