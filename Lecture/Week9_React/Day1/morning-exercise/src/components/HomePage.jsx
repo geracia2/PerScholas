@@ -28,6 +28,7 @@ export default function HomePage() {
     setApiData([...apiData, emp]);
   }
 
+  // this will crash for inf. loop
   // function filterEmployee(search) {
   //   // setFilteredData(search)
   // }
@@ -40,7 +41,6 @@ export default function HomePage() {
     <div id="home-page">
       <Header />
       {apiData && (<SearchBar employee={apiData} setFilteredData={setFilteredData} />)}
-      {/* {apiData && <EmployeeList employee={apiData}  />} */}
       {filteredData !== null ? <EmployeeList employee={filteredData} /> : apiData && <EmployeeList employee={apiData}  /> }
       <Form addEmployee={addEmployee} />
     </div>
