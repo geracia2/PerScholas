@@ -9,10 +9,10 @@
 
 import { useEffect } from "react";
 
-export default function GetAllStarships({setApiData}) {
+export function GetAllStarships(setApiData) {
 
     useEffect(() => {
-        async function getApiData(params) {
+        async function getApiData() {
             try {
                 let response = await fetch('https://swapi.dev/api/starships/?format=json')
                 let data =  await response.json()
@@ -24,6 +24,5 @@ export default function GetAllStarships({setApiData}) {
             }
         }
         getApiData();
-
     }, [])
 }

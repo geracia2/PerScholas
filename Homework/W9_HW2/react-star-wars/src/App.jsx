@@ -1,15 +1,24 @@
 import { useState } from "react";
 import "./App.css";
-import GetAllStarships from "./services/sw-api";
+import { GetAllStarships } from "./services/sw-api";
 import StarShipCard from "./components/StarShipCard";
-
+import Header from "./components/Header";
 function App() {
   const [apiData, setApiData] = useState(null);
 
   return (
     <>
-      <GetAllStarships setApiData={setApiData} />
-      {apiData && apiData.map((ship, index) => <StarShipCard key={index} ship={ship} />)}
+      {GetAllStarships(setApiData)}
+      {/* <GetAllStarships setApiData={setApiData} /> */}
+      <br />
+      <Header />
+      {apiData && (
+        <div className="container">
+          {apiData.map((ship, index) => (
+            <StarShipCard key={index} ship={ship} />
+          ))}
+        </div>
+      )}
     </>
   );
 }
