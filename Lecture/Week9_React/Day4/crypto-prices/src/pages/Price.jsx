@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
 
 
 export default function Price() {
@@ -12,8 +12,10 @@ export default function Price() {
   // useParams give us an object with a key of the url Parameter and the value of the passed parameter
   // so if the url is prices/btc, params.symbol = btc
   // the above two lines can be destruct to:
-  const { symbol } = useParams()
+  let { symbol } = useParams()
   // const { dog } = useParams() // this needs to match what we have on app
+
+  let navigate = useNavigate()
 
   // Using the other two variables to create our URL
   const url = `http://rest.coinapi.io/v1/exchangerate/${symbol}/USD?apikey=${apiKey}`;
@@ -41,7 +43,7 @@ export default function Price() {
 // loaded function for when data is fetched
 const loaded = () => {
   return (
-    <div>
+    <div onClick={()=> navigate('/')}>
       <h1>
         {coin.asset_id_base}/{coin.asset_id_quote}
       </h1>
