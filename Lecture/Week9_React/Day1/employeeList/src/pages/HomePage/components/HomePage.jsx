@@ -4,30 +4,8 @@ import SearchBar from "./SearchBar";
 import Form from "./Form";
 import Form2 from "./Form2";
 
-import { useState } from "react";
-import { useEffect } from "react";
+export default function HomePage({apiData, setFilteredData, filteredData, addEmployee}) {
 
-export default function HomePage() {
-  let [apiData, setApiData] = useState(null);
-  let [filteredData, setFilteredData] = useState(null);
-
-  useEffect(() => {
-    async function getApiData() {
-      try {
-        let response = await fetch("https://reqres.in/api/users?page");
-        let data = await response.json();
-        setApiData(data.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getApiData();
-  }, []);
-
-  // function to update current list plus input
-  function addEmployee(emp) {
-    setApiData([...apiData, emp]);
-  }
 
   // this will crash for inf. loop
   // function filterEmployee(search) {

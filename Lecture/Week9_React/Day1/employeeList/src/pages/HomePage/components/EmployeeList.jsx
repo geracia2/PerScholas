@@ -1,6 +1,8 @@
 // import data from "../data";
 import { Fragment } from "react";
 import EmployeeListItem from "./EmployeeListItem";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function EmployeeList({employee}) {
 
@@ -8,9 +10,9 @@ export default function EmployeeList({employee}) {
       <div className="employeeList">
 
         {employee.map((employee) => (
-          <Fragment key={employee.id}>
+          <Link to={`/EmployeeShowcase/${employee.id}`} key={employee.id}>
             <EmployeeListItem employee={employee}  />
-          </Fragment>
+          </Link>
         ))}
         
       </div>
