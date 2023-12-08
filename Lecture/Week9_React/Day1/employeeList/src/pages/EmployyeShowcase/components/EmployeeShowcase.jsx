@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 export default function EmployeeShowcase({ apiData }) {
   // useParams is picking up :id  so to use it would be id.id or deconstruct to:
   const { id } = useParams();
-  // filter returns an array, so we can destructure it with [] 
+  // filter returns an array, so we can destructure it with []
   const [soloedEmployee] = apiData.filter((emp) => emp.id == id);
 
   // console.log(apiData);
@@ -12,15 +12,20 @@ export default function EmployeeShowcase({ apiData }) {
   console.log(soloedEmployee);
 
   return (
-    <Link to='/' className="employee">
-      {/* don't know why we need an extra . before employ avatar path but we do */}
-      <img className="imgStyling" src={`.${soloedEmployee.avatar}`} />
+    <>
+      <div>
+        <Link to="/">
+          <button className="submitBtn">&lt; Employee List</button>
+        </Link>
+      </div>
+      {/* don't know why we need an extra . before employ avatar path but */}
+      <img className="imgStyling" src={`${soloedEmployee.avatar}`} />
       <div className="flexStack">
         <div className="name">
           {soloedEmployee.first_name} {soloedEmployee.last_name}
         </div>
         <div className="email">{soloedEmployee.email}</div>
       </div>
-    </Link>
+    </>
   );
 }
