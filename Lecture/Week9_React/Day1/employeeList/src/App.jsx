@@ -1,11 +1,15 @@
 import "./App.css";
-import HomePage from "./components/HomePage";
+import HomePage from './pages/HomePage/components/HomePage'
+import EmployeeShowcase from './pages/EmployyeShowcase/components/EmployeeShowcase'
+import { Route, Routes } from "react-router-dom";
 
 export default function App() {
   return (
     <>
-    
-      <HomePage />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/EmployeeShowcase/:id" element={<EmployeeShowcase />} />
+      </Routes>
     </>
   );
 }

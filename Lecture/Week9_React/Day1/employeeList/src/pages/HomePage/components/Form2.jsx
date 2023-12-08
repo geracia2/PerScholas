@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import Random from '../utility/Random'
+import Random from '../../../utility/Random'
 
 
 export default function Form({ addEmployee }) {
@@ -31,9 +31,19 @@ export default function Form({ addEmployee }) {
 
     // console.log('render')
 
-    return (
-        <form onSubmit={handleSubmit}>
 
+    return (
+        <>
+            <button onClick={handleReveal}>
+                Add and Employee &gt;
+            </button>
+            {/* {reveal &&  */}
+            <div>
+                <h2>
+                    Add an employee:
+                </h2>
+            </div>
+        <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name: </label>
             <input id="name" ref={firstNameRef} />
 
@@ -43,7 +53,9 @@ export default function Form({ addEmployee }) {
             <label htmlFor="email">Email: </label>
             <input id="email" ref={emailRef} />
 
-            <button>Submit</button>
+            <button className="submitBtn">Submit</button>
         </form>
+        {/* } */}
+        </>
     )
 }

@@ -90,6 +90,9 @@ input {
   color: rgb(0, 0, 0);
 }
 
+.submitBtn {
+margin: 10px;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
