@@ -9,7 +9,7 @@ export default function EmployeeShowcase({ apiData }) {
 
   // console.log(apiData);
   // console.log(id);
-  console.log(soloedEmployee);
+  // console.log(soloedEmployee);
 
   return (
     <>
