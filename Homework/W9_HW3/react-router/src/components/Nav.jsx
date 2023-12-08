@@ -10,6 +10,9 @@ export default function Nav() {
       <Link to="/about">
         <button>About</button>
       </Link>
+      <Link to="/stocks">
+        <button>Dashboard</button>
+      </Link>
     </>
   );
 }

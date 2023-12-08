@@ -6,7 +6,9 @@ export default function Stock() {
   const { stocks } = useStockContext();
   const { symbol } = useParams();
   const [targetStock] = stocks.filter((stock) => stock.symbol == symbol);
+
   console.log(targetStock);
+  
   return (
     <div>
       <div>{targetStock.name} | {targetStock.symbol}</div>
