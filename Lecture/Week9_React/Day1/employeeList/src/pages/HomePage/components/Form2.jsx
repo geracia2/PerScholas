@@ -37,13 +37,13 @@ export default function Form({ addEmployee }) {
   return (
     <>
       {!revealForm && (
-        <button className="submitBtn" onClick={handleReveal}>Add and Employee &gt;</button>
+        <button className="submitBtn" onClick={handleReveal}>Add an Employee &gt;</button>
         )}
       {revealForm && (
           <>
           <button className="submitBtn" onClick={handleReveal}>&lt; Close</button>
           <div>
-            <h2>Add an employee:</h2>
+            <header>Add an employee:</header>
           </div>
           <form onSubmit={handleSubmit}>
             <label htmlFor="name">Name: </label>

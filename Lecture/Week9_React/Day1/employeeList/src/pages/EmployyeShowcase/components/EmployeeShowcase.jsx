@@ -19,12 +19,12 @@ export default function EmployeeShowcase({ apiData }) {
         </Link>
       </div>
       {/* don't know why we need an extra . before employ avatar path but */}
-      <img className="imgStyling" src={`${soloedEmployee.avatar}`} />
-      <div className="flexStack">
-        <div className="name">
-          {soloedEmployee.first_name} {soloedEmployee.last_name}
+      <div className="flex-row">
+        <img className="imgStyling" src={`${soloedEmployee.avatar}`} />
+        <div className="flexStack">
+          <div className="name">{soloedEmployee.first_name} {soloedEmployee.last_name}</div>
+          <div className="email">{soloedEmployee.email}</div>
         </div>
-        <div className="email">{soloedEmployee.email}</div>
       </div>
     </>
   );

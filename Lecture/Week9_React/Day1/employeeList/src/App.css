@@ -15,7 +15,7 @@
   display: flex;
 }
 input {
-  width: 100%;
+  /* width: 100%; */
   padding: 15px;
   font-size: 16px;
   text-align: center;
@@ -77,6 +77,10 @@ input {
   padding: 15px;
   /* gap: 5px; */
 }
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
 
 .name {
   font-family: "Arial Black", Gadget, sans-serif;
@@ -89,10 +93,18 @@ input {
   font-size: 1rem;
   color: rgb(0, 0, 0);
 }
-
+form {
+  display: flex;
+  flex-direction: column;
+}
+header{
+  font-size: 1.2rem;
+  font-weight: 700;
+}
 .submitBtn {
 margin: 10px;
 }
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
