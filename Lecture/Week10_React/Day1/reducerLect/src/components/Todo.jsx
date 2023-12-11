@@ -6,7 +6,7 @@ function Todo({ item, completeTodo, deleteTodo, dispatch }) {
         type="checkbox"
         checked={item.completed}
         // onChange={() => completeTodo(item.id)}
-        // change to
+        // change to >
         onChange={() => dispatch({type: 'COMPLETE_TODO', payload: item.id })}
       />
       {item.text}

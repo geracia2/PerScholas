@@ -31,6 +31,7 @@ export default function App() {
   // --- refactor ---
   function completeTodo(id) {
     dispatch({type: 'COMPLETE_TODO', payload: id})
+    // place the following in reducer:
     // let newTodos = todos.map((item) =>
     //   item.id === id ? { ...item, completed: !item.completed } : item
     // );
