@@ -44,8 +44,9 @@ export default function App() {
       <TodoList
         todos={todos}
         listType={listType}
-        completeTodo={completeTodo}
-        deleteTodo={deleteTodo}
+        // completeTodo={completeTodo} // with dispatcher we can actually delete this
+        // deleteTodo={deleteTodo} // with dispatcher we can actually delete this
+        dispatch={dispatch} // since we have dispatcher available we can pass it as props
       />
 
       <input value={input} onChange={handleChange} />

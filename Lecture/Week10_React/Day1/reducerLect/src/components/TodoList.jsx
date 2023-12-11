@@ -1,6 +1,7 @@
 import Todo from "./Todo";
 
-function TodoList({ todos, listType, completeTodo, deleteTodo }) {
+function TodoList({ todos, listType, completeTodo, deleteTodo, dispatch }) {
+  // add dispatch to prop destruct
   let filteredTodos = todos.filter((item) => {
     if (listType === "all") {
       return true;
@@ -22,8 +23,9 @@ function TodoList({ todos, listType, completeTodo, deleteTodo }) {
         <Todo
           key={item.id}
           item={item}
-          completeTodo={completeTodo}
-          deleteTodo={deleteTodo}
+          // completeTodo={completeTodo} // with dispatcher we can actually delete this
+          // deleteTodo={deleteTodo} // with dispatcher we can actually delete this
+          dispatch={dispatch} // since we have dispatcher available we can pass it as props
         />
       ))}
     </ul>
