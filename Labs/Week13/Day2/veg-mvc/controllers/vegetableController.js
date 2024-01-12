@@ -10,7 +10,7 @@ const vegetableNew = (req, res) => {
 
 // "show" route
 const vegetableShow = (req, res) => {
-    res.render('Show', { item: vegetables[req.params.index], index: req.params.index })
+    res.render('Show', { item: vegetables[req.params.index], index: req.params.index, nav: `vegetables` })
     // res.send(vegetables[req.params.index])
 }
 
@@ -28,7 +28,7 @@ const vegetableCreate = (req, res) => {
 
 // "edit" route
 const vegetableEdit = (req, res) => {
-    res.render('Edit', { item: vegetables[req.params.index], index: req.params.index })
+    res.render('Edit', { item: vegetables[req.params.index], index: req.params.index, nav: 'vegetables' })
 }
 
 // "destroy" route

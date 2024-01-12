@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Show({ item, index }) {
+export default function Show({ item, index, nav }) {
 // export default function Show(props) {
 
     return (
@@ -10,9 +10,9 @@ export default function Show({ item, index }) {
             <br />
             {item.readyToEat ? 'Its is ready to eat' : 'It is not ready to eat... Cant touch this' }
             <br /><br />
-            <a href={`/items/${index}/edit`}>Edit</a>
+            <a href={`/${nav}/${index}/edit`}>Edit</a>
             <br /><br />
-            <form action={`/items/${index}?_method=DELETE`} method='POST'>
+            <form action={`/${nav}/${index}?_method=DELETE`} method='POST'>
                 <button>Delete</button>
             </form>
         </div>
