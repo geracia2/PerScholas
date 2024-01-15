@@ -17,7 +17,7 @@ app.engine('jsx', jsxEngine());
 
 // Mount routes [root only if using MVC]
 app.get("/", (req, res) => {
-  res.send("Welcome to the Pokemon App!");
+  res.send("Root");
 });
 
 app.listen(PORT, () => {
