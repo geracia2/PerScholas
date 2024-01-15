@@ -1,7 +1,8 @@
 const pokemon = require("../models/pokemon");
 
 const pokemonIndex = (req, res)=>{
-    res.send(pokemon)
+    // res.send(pokemon) // test initial response
+    res.render('Index', {pokemon} )
 }
 
 

@@ -19,7 +19,8 @@ app.set("view engine", "jsx");
 app.engine("jsx", jsxEngine());
 
 // Mount middleware (app.use)
-// set default root, for all things in specified route
+// (set default root, for all things following '/' in specified route)
+// if '/pokemon' is hit, use pokemonRoutes with '/pokemon/rout' after '/'
 app.use("/pokemon", pokemonRoutes); // remove if not using Router
 
 

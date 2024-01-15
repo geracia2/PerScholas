@@ -6,10 +6,15 @@ const router = express.Router();
 const pokemonController = require('../controllers/pokemonController')
 
 
+// !! b/c of Router, all following routes will have
+// /pokemon in front of them
+
 // ==index== 
+// // /pokemon/
 router.get('/', pokemonController.pokemonIndex)
 
 // // ==new==
+// // /pokemon/new
 // router.get('/new', pokemonController.pokemonNew)
 
 // // ==show==
