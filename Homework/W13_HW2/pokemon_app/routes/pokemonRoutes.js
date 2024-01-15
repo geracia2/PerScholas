@@ -17,8 +17,8 @@ router.get('/', pokemonController.pokemonIndex)
 // // /pokemon/new
 // router.get('/new', pokemonController.pokemonNew)
 
-// // ==show==
-// router.get('/:index', pokemonController.pokemonShow)
+// ==show==
+router.get('/:index', pokemonController.pokemonShow)
 
 // // ==create==
 // router.post('/', pokemonController.pokemonCreate)
