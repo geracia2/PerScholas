@@ -8,5 +8,5 @@ const dataSchema = new Schema ({
 })
 // mongoose.model('Target this folder collection on MongoDB', match this schema)
 // folder needs to be plural
-const Data = mongoose.model('setofdata', dataSchema)
+const Data = mongoose.model('dataSets', dataSchema)
 module.exports = Data

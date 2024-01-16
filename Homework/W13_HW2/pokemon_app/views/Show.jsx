@@ -13,7 +13,7 @@ export default function Show({ pokemon }) {
       <h1 style={inLineStyle}>Gotta Catch 'Em All</h1>
       <h4><a href={`/pokemon`}>Back</a></h4>
       <h2>
-        {pokemon.name.replace(regEx, function (x) {
+        {pokemon.name.replace(regEx, (x)=> {
           return x.toUpperCase();
         })}
       </h2>

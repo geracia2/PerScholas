@@ -13,6 +13,12 @@ router.get('/', fruitController.fruitIndex)
 // "new" route
 router.get('/new', fruitController.fruitNew)
 
+// "seed" route
+router.get('/seed', fruitController.fruitSeed )
+
+// "clear" route
+router.get('/clear', fruitController.fruitClear )
+
 // "show" route
 router.get('/:id', fruitController.fruitShow)
 
@@ -20,12 +26,13 @@ router.get('/:id', fruitController.fruitShow)
 router.post('/', fruitController.fruitCreate)
 
 // "edit" route
-router.get('/:index/edit', fruitController.fruitEdit)
+router.get('/:id/edit', fruitController.fruitEdit)
 
 // "destroy" route
-router.delete('/:index', fruitController.fruitDelete)
+router.delete('/:id', fruitController.fruitDelete)
 
 // "update" route
-router.put('/:index', fruitController.fruitUpdate)
+router.put('/:id', fruitController.fruitUpdate)
+
 
 module.exports = router
