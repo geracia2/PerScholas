@@ -2,6 +2,7 @@
 const express = require("express");
 const jsxEngine = require("jsx-view-engine");
 const mongoose = require('mongoose')
+require('dotenv').config()
 // Database Models
 const pokemon = require("./models/pokemon"); // import in controller and views too, may not need here
 
@@ -28,6 +29,7 @@ app.use("/pokemon", pokemonRoutes); // remove if not using Router
 
 
 // Mount routes [root only if using MVC]
+// in MVC flow: Server > Routes > Controllers > Views
 // ==ROOT==
 app.get("/", (req, res) => {
   res.send("Welcome to the Pokemon App!");
@@ -38,5 +40,5 @@ app.get("/", (req, res) => {
 // });
 
 app.listen(PORT, () => {
-  console.log(`listening to port: ` + PORT);
+  console.log(`listening to port: ` + PORT + `, mongo URI: ` + process.env.MONGO_URI);
 });

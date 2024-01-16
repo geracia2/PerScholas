@@ -7,3 +7,5 @@
 . node server || nodemon if installed
 
 npm install mongoose
+npm install dotenv
+require('dotenv').config() // to enable .env
