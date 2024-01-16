@@ -42,6 +42,6 @@ app.get("/", (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`listening to port: ` + PORT + `, mongo URI: ` + process.env.MONGO_URI);
+  console.log(`listening to port: ` + PORT);
   mongoConfig();
 });

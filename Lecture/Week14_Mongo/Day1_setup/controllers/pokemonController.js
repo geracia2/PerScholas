@@ -1,9 +1,23 @@
 const pokemon = require("../models/pokemon");
+const Data = require('../models/dataModel')
+
 
 // == INDEX ==
-const pokemonIndex = (req, res) => {
-  // res.send(pokemon) // test initial response
-  res.render("Index", { pokemon: pokemon });
+const pokemonIndex = async (req, res) => {
+  // change the controller function to async
+	// catch the MongoDB data and add it to the view prop
+  let showData;
+  try {
+    // load all data with Model.find()
+    let showData = await Data.find()
+    // to find very specific data, say to get a response of just names, no extra data:
+    // let showData = await Data.find({name:specific})
+    console.log(showData);
+  } catch (error) {
+    console.log(error);
+    res.send('there is an error')
+  }
+  res.render("Index", { props: showData });
 };
 
 // // == NEW ==
@@ -14,10 +28,16 @@ const pokemonIndex = (req, res) => {
 // == SHOW ==
 const pokemonShow = (req, res) => {
   //response = renderThis(views/'Show', props{ pokeProp= pokemonArray[i of paramFromRoutes]})
+  // res.render("Show", { pokemon: pokemon[req.params.index] });
+  // const data = await Model.findByID(req.params.index) // params 
   res.render("Show", { pokemon: pokemon[req.params.index] });
 };
 
 // // == CREATE ==
+// ++++++ MongoDB version
+// model.create(req.body) or model.create({objThatMatchesSchema}) is the main point 
+
+
 // const pokemonCreate = (req, res) => {
 //     console.log(req.body)
 //     if (req.body.readyToEat === 'on') {

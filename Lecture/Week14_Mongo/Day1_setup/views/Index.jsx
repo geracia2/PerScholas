@@ -19,7 +19,9 @@ export default function Index({ pokemon }) {
           {pokemon.map((mon, i) => (
             <Fragment key={mon.name}>
               <li>
-                <a href={`/pokemon/${i}`}>
+                {/* <a href={`/pokemon/${i}`}> */}
+                {/* for mongoDB target the _id to get specific item which then sets the url params */}
+                <a href={`/pokemon/${pokemon._id}`}>
                   {mon.name.replace(regEx, function (x) {
                     return x.toUpperCase();
                   })}
