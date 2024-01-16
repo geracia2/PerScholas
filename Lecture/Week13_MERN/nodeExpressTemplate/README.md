@@ -6,3 +6,4 @@
 
 . node server || nodemon if installed
 
+npm install mongoose
