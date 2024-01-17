@@ -21,12 +21,14 @@ app.engine("jsx", jsxEngine());
 
 // Mount middleware (app.use)
 // all things that happen between a server connection and a request
+// allow url parsing, req.body !! must be above routes !!
+app.use(express.urlencoded({ extended: true }));
 // (set default root, for all things following '/' in specified route)
 // if '/pokemon' is hit, use pokemonRoutes with '/pokemon/rout' after '/'
 app.use("/logs", logRoutes); // remove if not using Router
 
 // connect later for  when we use mongoose and mongoDB
-// mongoose.connect(process.env.MONGO_UI)
+mongoose.connect(process.env.MONGO_URI)
 
 
 // Mount routes [root only if using MVC]
@@ -36,6 +38,7 @@ app.get("/", (req, res) => {
   res.send("Welcome to the logs app!");
 });
 // if not using routes, fre get would be:
+// engine.method('route/:params', callback=>{req or res})
 // app.get("/pokemon", (req, res) => {
 //   res.send(pokemon);
 // });

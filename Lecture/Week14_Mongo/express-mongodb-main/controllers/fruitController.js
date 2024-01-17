@@ -1,11 +1,11 @@
 const fruits = require("../models/fruits");
 const Fruit = require("../models/Fruit");
 
+// "index" route
 const fruitIndex = async (req, res) => {
   let data;
   try {
     data = await Fruit.find();
-
     console.log("data from mongo: ", data);
   } catch (err) {
     console.log("data eror", err);
@@ -13,6 +13,7 @@ const fruitIndex = async (req, res) => {
   res.render("folder/Index", { fruits: data });
 };
 
+// "new" route
 const fruitNew = (req, res) => {
   res.render("New");
 };
@@ -87,8 +88,8 @@ const fruitSeed = async (req, res) => {
   // deleteMany will clear everything
   console.log(`Deleting everything`);
   await Fruit.deleteMany();
-  await Fruit.create(fruits)
-  res.redirect('/fruits')
+  await Fruit.create(fruits);
+  res.redirect("/fruits");
 };
 const fruitClear = async (req, res) => {
   // delete all data from collection
@@ -96,7 +97,7 @@ const fruitClear = async (req, res) => {
   // deleteMany will clear everything
   console.log(`Deleting everything`);
   await Fruit.deleteMany();
-  res.redirect('/fruits')
+  res.redirect("/fruits");
 };
 
 module.exports = {
