@@ -45,7 +45,7 @@ const fruitCreate = async (req, res) => {
   } catch (err) {
     console.log("erro", err);
   }
-  fruits.push(req.body);
+  // fruits.push(req.body);
   res.redirect("/fruits");
 };
 
