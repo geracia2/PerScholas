@@ -1,5 +1,6 @@
 const Post = require("../models/postModel");
 
+
 module.exports.create = async (req, res) => {
   // create a comment by updating the comments property in post
   try {
