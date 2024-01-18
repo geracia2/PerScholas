@@ -8,7 +8,7 @@ const mongoConfig = require("./config");
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 
-// Routes
+// import Routes
 const logRoutes = require("./routes/logRoutes");
 
 // Express app

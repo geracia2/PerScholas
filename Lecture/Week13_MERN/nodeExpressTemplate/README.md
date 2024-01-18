@@ -4,8 +4,16 @@
 4. npm i express
 5. npm i jsx-view-engine react react-dom
 
-. node server || nodemon if installed
+node server || nodemon if installed
 
-npm install mongoose
-npm install dotenv
+other things to include:
+npm i method-override
+npm i mongoose
+npm i dotenv
+
+middlewear
+app.use(methodOverride("_method"));
+// allow url parsing, req.body !! must be above routes !!
+app.use(express.urlencoded({ extended: true }));
+
 require('dotenv').config() // to enable .env

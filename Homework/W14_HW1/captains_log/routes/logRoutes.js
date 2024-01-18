@@ -37,8 +37,8 @@ router.get("/new", (req, res) => {
 });
 
 // == SHOW ==
+// whats going on: response = renderThis(views/'Show', props{ pokeProp= pokemonArray[i of paramFromRoutes]})
 router.get("/:index", async (req, res) => {
-  //response = renderThis(views/'Show', props{ pokeProp= pokemonArray[i of paramFromRoutes]})
   let response;
   try {
     response = await Logs.findById(req.params.index);
@@ -50,7 +50,6 @@ router.get("/:index", async (req, res) => {
 });
 
 // == CREATE ==
-// router.post('/', logController.logCreate)
 router.post("/", async (req, res) => {
   // res.send("received"); // test
   req.body.shipIsBroken = req.body.shipIsBroken === "on" ? true : false;
@@ -71,7 +70,7 @@ router.post("/", async (req, res) => {
 router.delete("/:index", async (req, res) => {
   try {
     await Logs.findByIdAndDelete(req.params.index);
-    console.log("Deleting: " + Logs.findByIdAndDelete(req.params.index));
+    console.log("Logs.findByIdAndDelete: " + Logs.findByIdAndDelete(req.params.index));
   } catch (error) {
     console.log(error);
   }
