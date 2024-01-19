@@ -7,16 +7,18 @@ export default function App() {
   let [input, setInput] = useState("");
   let [listType, setListType] = useState("all");
 
-  // first connect
+  // first connect,
+  // R in CRUD
   useEffect(() => {
     const getData = async () => {
       try {
         // using vite.config we use a proxy to add the before of 'http://localhost:8080'
         // the proxy is just making this cleaner
-        const response = await fetch("/api/test");
-        const data = await response.json()
+        // const response = await fetch("/api/test");
+        const response = await fetch("/api/todos");
+        const data = await response.json();
         console.log(data);
-        
+        setTodos(data);
       } catch (err) {
         console.error(err);
       }
@@ -24,26 +26,54 @@ export default function App() {
     getData();
   }, []);
 
-  function addToList() {
-    let item = {
-      text: input,
-      completed: false,
-      id: crypto.randomUUID(), // 2188jd-293483-dfllkaksldf
-    };
+  // C in CRUD
+  async function addToList() {
+    let todo = { text: input };
 
-    let newTodos = [...todos, item];
+    try {
+      const url = "/api/todos";
+      const options = {
+        method: "POST", // GET, POST, PUT, DELETE
+        body: JSON.stringify(todo), // transferring data needs to be strings, add express.json() to the server to receive
+        headers: {
+          // headers just telling the receiving server what the request type is, basically to take this string and use a json method to decode?
+          "Content-Type": "application/json",
+        },
+      };
+      const response = await fetch(url, options);
+      const newTodo = await response.json();
+      setTodos([...todos, newTodo]);
+      console.log(newTodo);
+      setInput("");
+    } catch (error) {
+      console.warn(error);
+    }
 
-    setTodos(newTodos);
-    setInput("");
+    // how we were constructing the items before:
+    // let item = {
+    // text: input,
+    // completed false is handled by the schema and id by MongoDB
+    // completed: false,
+    // id: crypto.randomUUID(), // 2188jd-293483-dfllkaksldf
+    // };
   }
 
   function handleChange(event) {
     setInput(event.target.value);
   }
 
-  function deleteTodo(id) {
-    let newTodos = todos.filter((item) => item.id !== id);
-    setTodos(newTodos);
+  // D in CRUD
+  async function deleteTodo(id) {
+    try {
+      await fetch(`/api/todos/${id}`, {
+        method: "DELETE",
+        // delete doesn't need a body or header, just the ID
+      });
+      let newTodos = todos.filter((item) => item._id !== id);
+      setTodos(newTodos);
+    } catch (err) {
+      console.warn(err);
+    }
   }
 
   function completeTodo(id) {
