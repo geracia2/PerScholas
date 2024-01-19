@@ -13,7 +13,7 @@ const PORT = 8080;
 const connectDB = require("./config");
 
 // solves issues of connecting to a server from a react app
-// app.use(cors())
+app.use(cors())
 
 // format request bodies to json, just like url_encode
 // body.parser does this too, express just came out with their own
@@ -21,7 +21,7 @@ const connectDB = require("./config");
 app.use(express.json());
 // instead of this:
 // allow url parsing, req.body !! must be above routes !!
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 
 app.get("/api/test", (req, res) => {
   console.log(`test`);
@@ -30,7 +30,7 @@ app.get("/api/test", (req, res) => {
   res.json("Server says hello client");
 });
 
-// ==INDEX== :: GET
+// ==INDEX== :: GET available: use model
 app.get("/api/todos", async (req, res) => {
   try {
     const todos = await Todo.find();
@@ -41,30 +41,45 @@ app.get("/api/todos", async (req, res) => {
   }
 });
 
-// ===CREATE== :: POST
-app.post('/api/todos', async (req, res) => {
+// ===CREATE== :: POST available: req.body
+app.post("/api/todos", async (req, res) => {
   try {
-      console.log('POST /api/todos')
-      console.log(req.body)
-      const todo = await Todo.create(req.body)
-      res.status(200).json(todo)
-  } catch(err) {
-      console.log(err.message)
-      res.status(400).json(err)
+    console.log("POST /api/todos");
+    console.log(req.body);
+    const todo = await Todo.create(req.body);
+    res.status(200).json(todo);
+  } catch (err) {
+    console.log(err.message);
+    res.status(400).json(err);
   }
-})
+});
 
-// ===DELETE== :: DELETE
-app.delete('/api/todos/:id', async (req, res) => {
+// ===DELETE== :: DELETE available: req.params.id
+app.delete("/api/todos/:id", async (req, res) => {
   try {
-      console.log('DELETE /api/todos/:id')
-      await Todo.findByIdAndDelete(req.params.id)
-      res.status(200).json({ message: 'successfully deleted' })
-  } catch(err) {
-      console.log(err.message)
-      res.status(400).json(err)
+    console.log("DELETE /api/todos/:id");
+    await Todo.findByIdAndDelete(req.params.id);
+    res.status(200).json({ message: "successfully deleted" });
+  } catch (err) {
+    console.log(err.message);
+    res.status(400).json(err);
   }
-})
+});
+
+// ===UPDATE=== :: PUT available: req.params.id, req.body
+app.put("/api/todos/:id", async (req, res) => {
+  try {
+    console.log("UPDATE /api/todos/:id");
+    await Todo.findByIdAndUpdate(req.params.id, req.body);
+    res.status(200).json({ message: "successfully updated" });
+  } catch (err) {
+    console.log(err.message);
+    res.status(400).json(err);
+  }
+});
+
+// SHOW and EDIT are not necessary for client side 
+// as they would be handled in the app as a component
 
 app.listen(PORT, () => {
   console.log(`Listening on port: `, PORT);
