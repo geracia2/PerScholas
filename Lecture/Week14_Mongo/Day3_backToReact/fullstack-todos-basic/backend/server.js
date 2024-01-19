@@ -1,8 +1,17 @@
+// immediately import and fire function
+require('dotenv').config()
+
 const express = require("express");
 const cors = require('cors')
 
+
 const app = express();
 const PORT = 8080;
+
+// load connection to server
+const connectDB = require('./config')
+connectDB()
+
 
 // solves issues of connecting to a server from a react app
 // app.use(cors())
