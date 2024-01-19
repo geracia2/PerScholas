@@ -19,7 +19,7 @@ module.exports.seed = async (req, res) => {
       post.comments = commentIds;
 
       await Posts.create(post);
-      // another way of doing it
+      // another way of doing it:
       // for (let comment of comments) {
       //     const commentDoc = await Comment.create(comment)
       //     await Posts.findByIdAndUpdate(postDoc._id, {

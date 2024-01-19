@@ -15,7 +15,6 @@ function Show(props) {
                         <>
                             <div>Comments:</div>
                             {/* in a referenced setup the comments are not in the post */}
-                            {/* <p>{props.post.comments.map((comment, i) =>  */}
                             <p>{props.post.comments.map((comment, i) => 
                                 <div key={i} className="comm">
                                     <div>{comment.user}</div>
