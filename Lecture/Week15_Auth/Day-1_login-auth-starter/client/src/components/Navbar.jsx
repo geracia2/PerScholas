@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import icon from '../assets/react.svg'
 
 function Navbar({ username, setUser }) {
-  
+
   const logout = () => {
+    // remove token from local storage and state
+    localStorage.removeItem('token')
+    setUser({})
+    // redirect to home
   };
 
   return (
