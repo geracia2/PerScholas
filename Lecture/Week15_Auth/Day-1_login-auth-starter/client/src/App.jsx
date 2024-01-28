@@ -53,10 +53,7 @@ function App() {
         {loggedIn ? (
           <>
             {/* if logged in */}
-            <Route
-              path="/profile"
-              element={<Profile username={user.username} email={user.email} />}
-            />
+            <Route path="/profile" element={<Profile username={user.username} email={user.email} />} />
             {/* this will actually render for a sec, then redirect. Fixed to cond. load if we are not loading  */}
             {!loading && <Route path="/login" element={<Navigate to="/" />} />}
           </>
